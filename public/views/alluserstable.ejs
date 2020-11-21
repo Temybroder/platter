@@ -1,0 +1,52 @@
+
+
+<% include ./partials/headeradmin %>
+<!-- Main Navigation  -->
+
+<!-- Main layout -->
+<main>
+ <div class="container-fluid">
+
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            autoWidth: false,
+            columnDefs: [
+                {
+                    targets: ['_all'],
+                    className: 'mdc-data-table__cell'
+                }
+            ]
+        } );
+    } );
+    </script>
+   <h3>VIEW ALL USERS</h3>
+    <table id="example" class="mdl-data-table" style="width:100%">
+      <thead>
+          <tr>
+            <th>User Name</th>
+            <th>User Email</t>
+            <th>Date User Joined</th>
+            <th>Role</th>
+             <th>Details</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+      
+       <tbody>
+        <% users.forEach(function(user){ %>
+          <tr>
+              <td>   <a href = "/admng/finduser" ><%=  user.name %>  </a> </td> 
+              <td><%= user.email %></td>
+            <td><%= user.date%></td>
+            <td><%= user.role %></td>
+            <td>Learn More</td>
+            <td><a class="btn aqua-gradient btn-rounded"><i class="fas fa-trash"></i></a></td>
+          </tr>              
+          <% }) %>
+        </tbody>
+      </table>
+
+</div>
+</main>
+<% include ./partials/footeradmin %>
