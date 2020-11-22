@@ -156,14 +156,14 @@ router.get("/allusers", ensureAuthenticated, (req, res) => {
   // count: users.length;
 
 // Get Single User
-router.get("/user/:Id", ensureAuthenticated, (req, res) => {
+router.get("/user/:_id", ensureAuthenticated, (req, res) => {
   User.findById(req.params._id)
   .populate('project')
   .exec(function(err, user){
     if (err) {
       res.send('something went really wrong');
       }
-    res.render('viewproject', {user: user})})})
+    res.render('viewproject', {user})})})
 
 
 // Second Get Single User Route
@@ -171,7 +171,7 @@ router.get("/find/:_id", ensureAuthenticated, (req, res) => {
   User.findById(req.params._id)
   .populate('project')
 	.then(user =>  res.render('viewproject', {user}))
-	.catch(err => res.status(400).json( `No User with the id of ${req.params.id}`))
+	.catch(err => res.status(400).json( `No User with the id of ${req.params._id}`))
   })    
 
 
